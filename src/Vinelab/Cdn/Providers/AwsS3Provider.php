@@ -203,7 +203,11 @@ class AwsS3Provider extends Provider implements ProviderInterface
                 if (file_exists($file->getRealPath())) {
 
                     $new_file_signature = md5_file($file->getRealPath());
-                    $old_file_signature = $file_signatures[$file->getRealPath()];
+
+                    if (isset($file_signatures[$file->getRealPath()]))
+                        $old_file_signature = $file_signatures[$file->getRealPath()];
+                    else
+                        $old_file_signature = null;
 
                     if ($new_file_signature != $old_file_signature) $changed_assets[] = $file;
                 }

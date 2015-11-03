@@ -78,7 +78,8 @@ class CdnFacade implements CdnFacadeInterface
     public function asset($path)
     {
         // if asset always append the public/ dir to the path (since the user should not add public/ to asset)
-        return $this->generateUrl($path, 'public/');
+        // 3-nov-2015: TSF - UPDATED to empty to play nice with assets uploaded directly in the root of the bucket
+        return $this->generateUrl($path, '');
     }
 
     /**
